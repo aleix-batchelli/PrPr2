@@ -8,20 +8,21 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/textView"
+    <EditText
+        android:id="@+id/emailEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="112dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textPersonName"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
@@ -30,40 +31,57 @@
         app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.668" />
+        app:layout_constraintVertical_bias="0.641" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="103dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="6dp"
-        android:background="@drawable/shape"
-        android:text="dfghh"
+    <TextView
+        android:id="@+id/textEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811"
-        tools:ignore="MissingClass" />
+        app:layout_constraintVertical_bias="0.507" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="103dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="6dp"
-        android:background="@color/white"
-        android:text="@string/resposta4_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="registrer"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/passwordTextEdit"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextEdit"
+        app:rippleColor="@color/black" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="105dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="36dp"
+        android:text="Login"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/passwordTextEdit"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextEdit"
+        app:rippleColor="@color/black" />
+
+    <EditText
+        android:id="@+id/passwordTextEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="208dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811"
-        tools:ignore="MissingClass" />
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <ImageView
-        android:id="@+id/foto1"
+        android:id="@+id/logo"
         android:layout_width="190dp"
         android:layout_height="169dp"
         android:layout_marginStart="80dp"
