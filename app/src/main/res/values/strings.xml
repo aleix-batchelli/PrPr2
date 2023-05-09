@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">PRACTICA_FINAL</string>
     <string name="create_wish_list">Create wish list</string>
     <string name="select_wish_list">Select wish list</string>
     <string name="manage_friends">Manage friends</string>
@@ -37,4 +38,5 @@
     <string name="search_new_users">Search new users</string>
     <string name="delete_friends">Delete friends</string>
     <string name="search_user">Search user</string>
+    <string name="login">Login</string>
 </resources>
