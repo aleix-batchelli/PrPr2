@@ -33,4 +33,8 @@
     <string name="my_friends_request">my friend requests</string>
     <string name="users">users</string>
     <string name="send">send</string>
+    <string name="list_my_friends">List my friends</string>
+    <string name="search_new_users">Search new users</string>
+    <string name="delete_friends">Delete friends</string>
+    <string name="search_user">Search user</string>
 </resources>
