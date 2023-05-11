@@ -39,4 +39,5 @@
     <string name="delete_friends">Delete friends</string>
     <string name="search_user">Search user</string>
     <string name="login">Login</string>
+    <string name="incorrectCredentials">Incorrect credentials</string>
 </resources>
