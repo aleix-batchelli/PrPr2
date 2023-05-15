@@ -3,6 +3,7 @@ package com.example.practica_final;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,15 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -59,9 +69,28 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean checkCredentials(String email, String password) {
         // TODO Create function that checks credentials provided to the API
-
+        makeRequest();
 
         return true;
+    }
+
+    private void makeRequest() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e("resposta", "La resposta es: " + response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("resposta", "Hi ha hagut un error: " + error);
+            }
+        });
+
+        queue.add(jsonObjectRequest);
     }
 
     private void setComponents() {
