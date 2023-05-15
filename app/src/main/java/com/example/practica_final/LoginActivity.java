@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -97,13 +98,21 @@ public class LoginActivity extends AppCompatActivity {
     private void makePost() {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/users/login";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("email", emailET.getText().toString());
+            jsonObject.put("password", passwordET.getText().toString());
+        } catch (JSONException e) {
+
+        }
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 System.out.println(response);
                 Intent intent = new Intent(LoginActivity.this,FeedActivity.class);
                 startActivityForResult(intent,ID_FEED_ACTIVITY);
-
+                System.out.println("Login Completed");
             }
         }, new Response.ErrorListener() {
             @Override
@@ -112,13 +121,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, R.string.incorrectCredentials, Toast.LENGTH_SHORT).show();
             }
         }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("email", emailET.getText().toString());
-                params.put("password", passwordET.getText().toString());
-                return params;
-            }
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/json");
