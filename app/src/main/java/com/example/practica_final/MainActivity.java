@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int ID_MAIN_ACTIVITY = 0;
     private ImageView logo;
 
     private final int ID_LOGIN_ACTIVITY = 1;
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(requestCode==ID_LOGIN_ACTIVITY){
+            return;
+        }
+        if (requestCode == ID_MAIN_ACTIVITY) {
             return;
         }
     }

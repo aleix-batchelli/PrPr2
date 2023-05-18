@@ -70,29 +70,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private boolean checkCredentials(String email, String password) {
-        // TODO Create function that checks credentials provided to the API
-        //makeRequest();
         makePost();
         return true;
-    }
-
-    private void makeRequest() {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "";
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.e("resposta", "La resposta es: " + response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("resposta", "Hi ha hagut un error: " + error);
-            }
-        });
-
-        queue.add(jsonObjectRequest);
     }
 
     private void makePost() {
@@ -110,9 +89,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response);
-                Intent intent = new Intent(LoginActivity.this,FeedActivity.class);
-                startActivityForResult(intent,ID_FEED_ACTIVITY);
-                System.out.println("Login Completed");
+                String accessToken = null;
+                try {
+                    accessToken = response.getString("accessToken");
+                    Authentication.setAuthentication(accessToken);
+                    Intent intent = new Intent(LoginActivity.this,FeedActivity.class);
+                    startActivityForResult(intent,ID_FEED_ACTIVITY);
+
+                    System.out.println("Login Completed");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override

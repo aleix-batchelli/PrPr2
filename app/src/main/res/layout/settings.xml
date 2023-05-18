@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/verde">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/verde"
+    tools:context=".SettingsActivity">
 
     <TextView
         android:id="@+id/settings"
@@ -93,26 +95,6 @@
         app:layout_constraintTop_toBottomOf="@id/delete"
         app:rippleColor="@color/black" />
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/shape"
-        android:text="@string/back"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/exit"
-        app:rippleColor="@color/black" />
 
-
-    <include
-        layout="@layout/menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
