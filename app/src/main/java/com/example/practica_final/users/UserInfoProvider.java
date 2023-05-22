@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.practica_final.Authentication;
 import com.example.practica_final.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,6 +58,7 @@ public class UserInfoProvider {
             public Map<String, String> getHeaders() {
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/json");
+                params.put("Authorization", "Bearer " + Authentication.getInstance());
                 return params;
             }
         };

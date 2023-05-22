@@ -1,4 +1,4 @@
-package com.example.practica_final;
+package com.example.practica_final.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,23 +13,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.practica_final.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -146,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response);
-                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivityForResult(intent,ID_LOGIN_ACTIVITY);
                 System.out.println("Register Completed");
             }

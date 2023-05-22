@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.practica_final.users.ProfileActivity;
+import com.example.practica_final.activities.ProfileActivity;
 import com.example.practica_final.users.User;
 
 public class FriendHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

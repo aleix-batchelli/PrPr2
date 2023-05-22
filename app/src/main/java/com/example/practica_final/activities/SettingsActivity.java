@@ -1,4 +1,4 @@
-package com.example.practica_final;
+package com.example.practica_final.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.practica_final.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -63,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response);
-                Intent intent = new Intent(SettingsActivity.this,MainActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                 startActivityForResult(intent,1);
                 System.out.println("delete Completed");
             }

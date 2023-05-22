@@ -1,9 +1,8 @@
-package com.example.practica_final;
+package com.example.practica_final.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +17,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.practica_final.Authentication;
+import com.example.practica_final.R;
+import com.example.practica_final.users.UserInfoProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // create new activity for register view
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent,ID_REGISTER_ACTIVITY);
             }
         }));
@@ -92,8 +93,12 @@ public class LoginActivity extends AppCompatActivity {
                 String accessToken = null;
                 try {
                     accessToken = response.getString("accessToken");
+                    System.out.println("accesstoken: " + accessToken);
                     Authentication.setAuthentication(accessToken);
-                    Intent intent = new Intent(LoginActivity.this,FeedActivity.class);
+
+                    Intent intent = new Intent(LoginActivity.this, FeedActivity.class);
+                    //int userID = UserInfoProvider.getUserID(LoginActivity.this, emailET.getText().toString());
+                    //intent.putExtra("userID", userID);
                     startActivityForResult(intent,ID_FEED_ACTIVITY);
 
                     System.out.println("Login Completed");

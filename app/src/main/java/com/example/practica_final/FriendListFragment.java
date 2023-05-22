@@ -9,11 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.practica_final.activities.FeedActivity;
 import com.example.practica_final.users.User;
 import com.example.practica_final.users.UserInfoProvider;
-import com.example.practica_final.users.UserManager;
-
-import java.util.ArrayList;
 
 public class FriendListFragment extends Fragment {
 
@@ -25,9 +23,7 @@ public class FriendListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String userEmail = ""; // get from intent
-        userID = UserInfoProvider.getUserID(getActivity(), userEmail);
-        users = UserInfoProvider.getFriends(getActivity(), userID);
+        userID = FeedActivity.getUserID();
     }
 
     @Override
@@ -43,6 +39,7 @@ public class FriendListFragment extends Fragment {
     }
 
     private void updateUI() {
+
         if (users.length == 0) {
             users = UserInfoProvider.getFriends(getActivity(), userID);
         }
