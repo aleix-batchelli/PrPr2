@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.practica_final.R;
 import com.example.practica_final.users.UserManager;
 
-public class FeedActivity extends AppCompatActivity {
+public class FeedActivity extends CustomActivity {
 
     private ImageButton profileButton;
     private ImageButton giftButton;
@@ -28,8 +28,8 @@ public class FeedActivity extends AppCompatActivity {
         userID = getIntent().getIntExtra("userID", 0);
         setContentView(R.layout.feed);
         setComponents();
-        setProfileButtonSettings();
-        setFriendsButtonSettings();
+        //setProfileButtonSettings();
+        //setFriendsButtonSettings();
 
     }
 
@@ -61,7 +61,7 @@ public class FeedActivity extends AppCompatActivity {
     }
 
 
-    private void setComponents() {
+    public void setComponents() {
         this.profileButton = findViewById(R.id.profile);
         this.giftButton = findViewById(R.id.gifts);
         this.homeButton = findViewById(R.id.home);
