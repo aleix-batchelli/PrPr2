@@ -94,11 +94,13 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     accessToken = response.getString("accessToken");
                     System.out.println("accesstoken: " + accessToken);
-                    Authentication.setAuthentication(accessToken);
 
                     Intent intent = new Intent(LoginActivity.this, FeedActivity.class);
-                    //int userID = UserInfoProvider.getUserID(LoginActivity.this, emailET.getText().toString());
-                    //intent.putExtra("userID", userID);
+                    int userID = UserInfoProvider.getUserID(accessToken);
+
+                    // save access token and user ID
+                    Authentication.setAuthentication(accessToken);
+                    Authentication.setUserID(userID);
                     startActivityForResult(intent,ID_FEED_ACTIVITY);
 
                     System.out.println("Login Completed");

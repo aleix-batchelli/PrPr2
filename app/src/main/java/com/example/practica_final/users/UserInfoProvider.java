@@ -13,10 +13,15 @@ import com.example.practica_final.Authentication;
 import com.example.practica_final.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,45 +30,19 @@ public class UserInfoProvider {
     private static int userID;
 
 
-    public static int getUserID(Activity activity, String userEmail) {
-        userID = 0;
+    public static int getUserID(String token) throws JSONException {
+        String[] parts = token.split("\\.");
+        Base64.Decoder decoder = Base64.getUrlDecoder();
 
-        JSONObject jsonObject = new JSONObject();
-
-
-        RequestQueue queue = Volley.newRequestQueue(activity);
-        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/users";
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                System.out.println(response);
-                User[] users = parseUsers(response);
-
-                for (User usuari: users) {
-                    if (usuari.getEmail().equals(userEmail)) {
-                        userID = usuari.getID();
-                    }
-                }
+        String header = new String(decoder.decode(parts[0]));
+        String payload = new String(decoder.decode(parts[1]));
+        System.out.println("header: " + header);
+        System.out.println("payload: " + payload);
 
 
-                System.out.println("Register Completed");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                Toast.makeText(activity, R.string.incorrectCredentials, Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            public Map<String, String> getHeaders() {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/json");
-                params.put("Authorization", "Bearer " + Authentication.getInstance());
-                return params;
-            }
-        };
-        queue.add(stringRequest);
-        return userID;
+        JSONObject jsonObject = new JSONObject(payload);
+        return jsonObject.getInt("id");
+
     }
 
     private static User[] parseUsers(JSONObject response) {
