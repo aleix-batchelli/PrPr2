@@ -41,4 +41,12 @@
     <string name="login">Login</string>
     <string name="chat">Chat</string>
     <string name="incorrectCredentials">Incorrect credentials</string>
+    <string name="create_Gift">Create Gift</string>
+    <string name="get_Gifts">Get Gifts</string>
+    <string name="edit_Gift">Edit Gift</string>
+    <string name="reservation_Gift">Reservation Gift</string>
+    <string name="delete_Gift">Delete Gift</string>
+    <string name="search_gift">Search Gift</string>
+    <string name="gifts">Gifts</string>
+    <string name="search_gifts">Search Gifts</string>
 </resources>
