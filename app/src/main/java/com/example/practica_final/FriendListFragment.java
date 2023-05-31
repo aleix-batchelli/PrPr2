@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.practica_final.activities.FeedActivity;
 import com.example.practica_final.users.User;
 import com.example.practica_final.users.UserInfoProvider;
 
@@ -23,7 +22,7 @@ public class FriendListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userID = FeedActivity.getUserID();
+        userID = Authentication.getUserID();
     }
 
     @Override

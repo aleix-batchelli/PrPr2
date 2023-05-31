@@ -36,6 +36,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         setComponents();
+        //setProfileButtonSettings(this);
+
         setDeleteButtonListener();
         //setExitButtonListener();
         

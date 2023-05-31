@@ -15,7 +15,7 @@ public class Authentication {
         Authentication.userID = userID;
     }
 
-    public int getUserID() {
+    public static int getUserID() {
         return userID;
     }
 }

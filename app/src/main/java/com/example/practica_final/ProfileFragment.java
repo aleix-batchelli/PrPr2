@@ -31,10 +31,6 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        UUID object = (UUID)
-                getArguments().getSerializable("ARGUMENT_OBJECT_ID");
-        //user = UserList.getPokemonByID(object);
-
     }
 
     @Override
@@ -48,9 +44,9 @@ public class ProfileFragment extends Fragment {
         profileIV = v.findViewById(R.id.profileImage);
         chatButton = v.findViewById(R.id.chatButton);
 
-        nameTV.setText(user.getName());
-        lastNameTV.setText(user.getLastName());
-        emailTV.setText(user.getEmail());
+        //nameTV.setText(user.getName());
+        //lastNameTV.setText(user.getLastName());
+        //emailTV.setText(user.getEmail());
         //profileIV.setImageResource(1);
 
         return v;

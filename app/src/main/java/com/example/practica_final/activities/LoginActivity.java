@@ -71,7 +71,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private boolean checkCredentials(String email, String password) {
-        makePost();
+        Intent intent = new Intent(LoginActivity.this, SingleFragmentActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        //int userID = UserInfoProvider.getUserID(accessToken);
+        //makePost();
         return true;
     }
 
@@ -81,8 +86,11 @@ public class LoginActivity extends AppCompatActivity {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("email", emailET.getText().toString());
-            jsonObject.put("password", passwordET.getText().toString());
+            //jsonObject.put("email", emailET.getText().toString());
+            jsonObject.put("email", "marc@marc.com");
+            jsonObject.put("password", "123456789");
+            //jsonObject.put("password", passwordET.getText().toString());
+
         } catch (JSONException e) {
 
         }
@@ -95,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                     accessToken = response.getString("accessToken");
                     System.out.println("accesstoken: " + accessToken);
 
-                    Intent intent = new Intent(LoginActivity.this, FeedActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, SingleFragmentActivity.class);
                     int userID = UserInfoProvider.getUserID(accessToken);
 
                     // save access token and user ID
