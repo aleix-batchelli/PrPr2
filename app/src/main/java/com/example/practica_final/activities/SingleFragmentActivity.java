@@ -1,9 +1,12 @@
 package com.example.practica_final.activities;
 
-import android.content.Intent;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,11 +20,14 @@ import com.example.practica_final.fragments.FriendManagementFragment;
 public class SingleFragmentActivity extends AppCompatActivity {
 
 
-    private ImageButton profileButton;
-    private ImageButton giftButton;
-    private ImageButton homeButton;
-    private ImageButton messagesButton;
-    private ImageButton friendsButton;
+    private ImageButton[] buttons;
+    private static final int PROFILE = 0;
+    private static final int GIFT = 1;
+    private static final int HOME = 2;
+    private static final int MESSAGE = 3;
+    private static final int FRIENDS = 4;
+
+    private boolean[] activeButtons;
     public FragmentManager fragmentManager;
 
     @Override
@@ -29,6 +35,9 @@ public class SingleFragmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed);
 
+
+
+        activeButtons = new boolean[] {false, false, true, false, false};
         setMenuComponents();
         setProfileButtonSettings();
         setFriendsButtonSettings();
@@ -47,16 +56,20 @@ public class SingleFragmentActivity extends AppCompatActivity {
     }
 
     private void setMenuComponents() {
-        this.profileButton = findViewById(R.id.profile);
-        this.giftButton = findViewById(R.id.gifts);
-        this.homeButton = findViewById(R.id.home);
-        this.messagesButton = findViewById(R.id.mail);
-        this.friendsButton = findViewById(R.id.friends);
+        buttons = new ImageButton[] {
+                findViewById(R.id.profile),
+                findViewById(R.id.gifts),
+                findViewById(R.id.home),
+                findViewById(R.id.mail),
+                findViewById(R.id.friends)
+        };
     }
     private void setMessagesButton() {
-        messagesButton.setOnClickListener((new View.OnClickListener() {
+        buttons[MESSAGE].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                animateButtons(MESSAGE);
                 // create new activity for register view
 
 
@@ -65,9 +78,11 @@ public class SingleFragmentActivity extends AppCompatActivity {
     }
 
     private void setHomeButton() {
-        homeButton.setOnClickListener((new View.OnClickListener() {
+        buttons[HOME].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                animateButtons(HOME);
                 // create new activity for register view
                 Fragment fragment = new FeedFragment();
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
@@ -77,9 +92,11 @@ public class SingleFragmentActivity extends AppCompatActivity {
     }
 
     private void setGiftButton() {
-        giftButton.setOnClickListener((new View.OnClickListener() {
+        buttons[GIFT].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                animateButtons(GIFT);
                 //Fragment fragment = new FeedFragment();
                 //fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
             }
@@ -88,11 +105,13 @@ public class SingleFragmentActivity extends AppCompatActivity {
 
 
     private void setFriendsButtonSettings() {
-        friendsButton.setOnClickListener((new View.OnClickListener() {
+        buttons[FRIENDS].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // create new activity for register view
                 System.out.println("BOTO FRIENDS APRETAT");
+
+                animateButtons(FRIENDS);
                 Fragment fragment = new FriendManagementFragment(SingleFragmentActivity.this);
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
 
@@ -105,16 +124,106 @@ public class SingleFragmentActivity extends AppCompatActivity {
     }
 
     private void setProfileButtonSettings() {
-        profileButton.setOnClickListener((new View.OnClickListener() {
+        buttons[PROFILE].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // create new activity for register view
                 System.out.println("BOTO APRETAT");
 
+                animateButtons(PROFILE);
+
                 Fragment fragment = new ProfileFragment();
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
             }
         }));
+
+
+    }
+
+
+    private void animateButtons (int button) {
+        ImageView view = findViewById(R.id.selector);
+        int target = 0;
+        switch (button) {
+            case PROFILE:
+                target = -400;
+                break;
+            case GIFT:
+                target = -205;
+                break;
+            case HOME:
+                target = 0;
+                break;
+            case MESSAGE:
+                target = 205;
+                break;
+            case FRIENDS:
+                target = 400;
+                break;
+        }
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "translationX", target);
+        objectAnimator.setDuration(400);
+        objectAnimator.start();
+
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.menu_button_selected);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                int top = buttons[button].getTop();
+                int left = buttons[button].getLeft();
+                int width = buttons[button].getWidth();
+                int height = buttons[button].getHeight();
+
+                int newPosition = top - (int) (height * 0.25);
+                buttons[button].layout(left, newPosition, left + width, newPosition + height);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        for (int i = 0; i < 5; i++) {
+            if (activeButtons[i]) {
+                if (i == button) {
+                    return;
+                }
+                int finalI = i;
+                Animation deanimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.menu_button_disselected);
+                deanimation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        int top = buttons[finalI].getTop();
+                        int left = buttons[finalI].getLeft();
+                        int width = buttons[finalI].getWidth();
+                        int height = buttons[finalI].getHeight();
+
+                        int newPosition = top + (int) (height * 0.25);
+                        buttons[finalI].layout(left, newPosition, left + width, newPosition + height);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                buttons[finalI].startAnimation(deanimation);
+                activeButtons[i] = false;
+            }
+        }
+
+        activeButtons[button] = true;
+        buttons[button].startAnimation(animation);
     }
 
     @Override
