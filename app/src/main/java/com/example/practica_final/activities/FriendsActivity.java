@@ -15,6 +15,7 @@ import com.example.practica_final.ProfileFragment;
 import com.example.practica_final.R;
 import com.example.practica_final.fragments.FeedFragment;
 import com.example.practica_final.fragments.FriendManagementFragment;
+import com.example.practica_final.fragments.FriendRequestFragment;
 import com.example.practica_final.fragments.SearchFriendFragment;
 
 public class FriendsActivity extends AppCompatActivity {
@@ -75,7 +76,7 @@ public class FriendsActivity extends AppCompatActivity {
                 break;
             }
             case ID_FRIEND_REQUESTS_ACTIVITY: {
-               // new FriendRequestFragment(this);
+                new FriendRequestFragment(this);
                 break;
             }
             case ID_SEARCH_FRIENDS_ACTIVITY: {
