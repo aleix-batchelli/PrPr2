@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/verde">
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/createWishList"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/home_menu_button_style"
+        android:backgroundTint="@null"
+        android:gravity="center"
+        android:text="@string/create_wish_list"
+        app:layout_constraintEnd_toStartOf="@id/selectWishList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/selectWishList"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/home_menu_button_style"
+        android:backgroundTint="@null"
+        android:gravity="center"
+        android:text="@string/select_wish_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/createWishList"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/manageFriends"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/home_menu_button_style"
+        android:backgroundTint="@null"
+        android:gravity="center"
+        android:text="@string/manage_friends"
+        app:layout_constraintStart_toStartOf="@id/createWishList"
+        app:layout_constraintTop_toBottomOf="@id/createWishList"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/categories"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/home_menu_button_style"
+        android:backgroundTint="@null"
+        android:gravity="center"
+        android:text="@string/categories"
+        app:layout_constraintStart_toStartOf="@id/selectWishList"
+        app:layout_constraintTop_toBottomOf="@id/selectWishList"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
