@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practica_final.users.User;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class FriendAdapter extends RecyclerView.Adapter<FriendHolder> {
 
     private User[] users;
     private Activity activity;
+    private JSONArray usersJsonArray;
 
     public FriendAdapter(User[] users, Activity activity) {
         this.users = users;
@@ -35,5 +38,9 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendHolder> {
     public void onBindViewHolder(FriendHolder holder, int position) {
         User user = users[position];
         holder.bind(user);
+    }
+
+    public void setUsers(User[] users) {
+        this.users = users;
     }
 }
