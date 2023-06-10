@@ -8,8 +8,8 @@ public class Authentication {
         return authentication;
     }
 
-    public static void setAuthentication(String authentication) {
-        Authentication.authentication = authentication;
+    public static void setAuthentication(String authenticationString) {
+        authentication = authenticationString;
     }
     public static void setUserID(int userID) {
         Authentication.userID = userID;
@@ -17,5 +17,9 @@ public class Authentication {
 
     public static int getUserID() {
         return userID;
+    }
+
+    public static String getAuthentication() {
+        return authentication;
     }
 }

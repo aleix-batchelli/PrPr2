@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -20,13 +18,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practica_final.Authentication;
 import com.example.practica_final.FriendAdapter;
 import com.example.practica_final.R;
 import com.example.practica_final.users.User;
-import com.example.practica_final.users.UserInfoProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,10 +30,9 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class SearchFriendFragment extends Fragment {
+public class FriendRequestFragment extends Fragment {
     private EditText searchUserET;
     private Button searchUserButton;
     private RecyclerView listUsersRV;
@@ -48,8 +43,7 @@ public class SearchFriendFragment extends Fragment {
     private User[] foundUsers;
 
     private JSONArray users;
-
-    public SearchFriendFragment(Activity activity) {
+    public FriendRequestFragment(Activity activity) {
         this.activity = activity;
     }
 
@@ -64,13 +58,13 @@ public class SearchFriendFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        this.v = inflater.inflate(R.layout.list_users, container, false);
+        this.v = inflater.inflate(R.layout.list_friend_requests, container, false);
 
         System.out.println("ACCESS: " + Authentication.getAuthentication());
 
         searchUserET = v.findViewById(R.id.searchUser);
-        searchUserButton = v.findViewById(R.id.searchUserButton);
-        listUsersRV = (RecyclerView) v.findViewById(R.id.searchUserRV);
+        searchUserButton = v.findViewById(R.id.searchButton);
+        listUsersRV = (RecyclerView) v.findViewById(R.id.searchRequestsRV);
         listUsersRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         User[] aux = new User[1];
@@ -87,20 +81,20 @@ public class SearchFriendFragment extends Fragment {
     private void updateUI() {
         System.out.println("update Ui");
 
-        getAllUsers(getActivity());
+        getAllFriendRequests(getActivity());
 
     }
 
-    private void getAllUsers(Activity activity) {
+    private void getAllFriendRequests(Activity activity) {
         JSONArray jsonObject = new JSONArray();
 
         RequestQueue queue = Volley.newRequestQueue(activity);
-        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/users";
+        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/friends/requests";
         JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
-
+                System.out.println("AAAAA RESPONSE: " + response);
                 try {
                     users = new JSONArray(response.toString());
                     User[] allUsers = convertJSONArrayToUsers(users);

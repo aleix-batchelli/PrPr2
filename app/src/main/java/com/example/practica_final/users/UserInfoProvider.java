@@ -3,6 +3,8 @@ package com.example.practica_final.users;
 import android.app.Activity;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -10,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practica_final.Authentication;
+import com.example.practica_final.FriendAdapter;
 import com.example.practica_final.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -28,6 +31,8 @@ import java.util.Map;
 public class UserInfoProvider {
     private static User[] foundUsers;
     private static int userID;
+    private static RecyclerView recyclerView;
+    private static FriendAdapter friendAdapter;
 
 
     public static int getUserID(String token) throws JSONException {
@@ -45,7 +50,7 @@ public class UserInfoProvider {
 
     }
 
-    private static User[] parseUsers(JSONObject response) {
+    public static User[] parseUsers(JSONObject response) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.fromJson(String.valueOf(response), User[].class);
     }
@@ -77,6 +82,7 @@ public class UserInfoProvider {
             public Map<String, String> getHeaders() {
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/json");
+                params.put("Authorization","Bearer " + Authentication.getAuthentication());
                 return params;
             }
         };
@@ -104,6 +110,7 @@ public class UserInfoProvider {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                System.out.println("error response FFFFFFFFF");
                 error.printStackTrace();
                 foundUsers = null;
                 Toast.makeText(activity, R.string.incorrectCredentials, Toast.LENGTH_SHORT).show();
@@ -120,39 +127,54 @@ public class UserInfoProvider {
         return foundUsers;
     }
 
-    public static User[] getAllUsers(Activity activity) {
-        foundUsers = null;
-
+    public static User[] getAllUsers(Activity activity, FriendAdapter friendAdapterAUX, RecyclerView recyclerViewAUX) {
         JSONObject jsonObject = new JSONObject();
+        friendAdapter = friendAdapterAUX;
+        recyclerView = recyclerViewAUX;
 
         RequestQueue queue = Volley.newRequestQueue(activity);
+        System.out.println("getting all users!!" + Authentication.getAuthentication());
         String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/users";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println(response);
-                User[] users = parseUsers(response);
+                System.out.println("onresponse in");
+                //System.out.println(response);
 
-                foundUsers = Arrays.copyOf(users, users.length);
+                    User[] users = parseUsers(response);
+                System.out.println("X!!MARC");
+                    foundUsers = Arrays.copyOf(users, users.length);
+                System.out.println("A!!MARC");
+                    friendAdapter = new FriendAdapter(users, activity);
+                System.out.println("B!!MARC");
+                    recyclerView.setAdapter(friendAdapter);
+                System.out.println("C!!MARC");
+
                 System.out.println("All users loaded correctly");
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                System.out.println("ERRROR REAL BROTHER");
                 error.printStackTrace();
-                foundUsers = null;
+                foundUsers = new User[0];
                 Toast.makeText(activity, R.string.incorrectCredentials, Toast.LENGTH_SHORT).show();
+
             }
         }) {
             public Map<String, String> getHeaders() {
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/json");
+                params.put("Authorization", "Bearer " + Authentication.getAuthentication());
                 return params;
             }
         };
         queue.add(stringRequest);
 
+        System.out.println("before return");
         return foundUsers;
     }
+
 
 }
