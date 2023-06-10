@@ -142,15 +142,10 @@ public class UserInfoProvider {
                 //System.out.println(response);
 
                     User[] users = parseUsers(response);
-                System.out.println("X!!MARC");
                     foundUsers = Arrays.copyOf(users, users.length);
-                System.out.println("A!!MARC");
                     friendAdapter = new FriendAdapter(users, activity);
-                System.out.println("B!!MARC");
                     recyclerView.setAdapter(friendAdapter);
-                System.out.println("C!!MARC");
 
-                System.out.println("All users loaded correctly");
 
             }
         }, new Response.ErrorListener() {

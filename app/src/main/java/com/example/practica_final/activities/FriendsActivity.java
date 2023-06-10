@@ -50,7 +50,7 @@ public class FriendsActivity extends AppCompatActivity {
         setHomeButton();
         setMessagesButton();
 
-        //setComponents();
+        setComponents();
         //listFriendsActionListener();
         //searchFriendsActionListener();
         //deleteFriendsActionListener();
@@ -62,26 +62,26 @@ public class FriendsActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentById(R.id.feedLayout);
 
         if (fragment == null) {
-           // fragment = getSelectedFragment(selectedFragment);
-            fragment = new SearchFriendFragment(this);
+            fragment = getSelectedFragment(selectedFragment);
+            //fragment = new SearchFriendFragment(this);
             fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
         }
 
     }
 
     private Fragment getSelectedFragment(int selectedFragment) {
+        System.out.println("seletedFragment: " + selectedFragment);
         switch (selectedFragment) {
             case ID_FRIEND_LIST_ACTIVITY: {
                // new ListFriendsFragment(this);
                 break;
             }
             case ID_FRIEND_REQUESTS_ACTIVITY: {
-                new FriendRequestFragment(this);
-                break;
+                return new FriendRequestFragment(this);
+
             }
             case ID_SEARCH_FRIENDS_ACTIVITY: {
-                new SearchFriendFragment(this);
-                break;
+                return new SearchFriendFragment(this);
             }
             case ID_DELETE_FRIENDS_ACTIVITY: {
                // new DeleteFriendsFragment(this);
@@ -180,7 +180,8 @@ public class FriendsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // change fragment
-
+                //fragment = new SearchFriendFragment(this);
+              //  fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
             }
         }));
     }

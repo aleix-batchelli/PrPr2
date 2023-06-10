@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practica_final.Authentication;
 import com.example.practica_final.FriendAdapter;
+import com.example.practica_final.FriendRequestsAdapter;
 import com.example.practica_final.R;
 import com.example.practica_final.users.User;
 
@@ -39,7 +40,7 @@ public class FriendRequestFragment extends Fragment {
     private View v;
     private Activity activity;
 
-    private FriendAdapter friendAdapter;
+    private FriendRequestsAdapter friendAdapter;
     private User[] foundUsers;
 
     private JSONArray users;
@@ -70,7 +71,7 @@ public class FriendRequestFragment extends Fragment {
         User[] aux = new User[1];
         aux[0] = new User(1, "", "", "", "");
 
-        friendAdapter = new FriendAdapter(aux, activity); // Inicializar el adaptador con una lista vacía
+        friendAdapter = new FriendRequestsAdapter(aux, activity); // Inicializar el adaptador con una lista vacía
         listUsersRV.setAdapter(friendAdapter); // Establecer el adaptador en el RecyclerView
 
         updateUI();

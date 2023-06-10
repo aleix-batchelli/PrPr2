@@ -10,24 +10,21 @@ import com.example.practica_final.users.User;
 
 import org.json.JSONArray;
 
-import java.util.ArrayList;
-
-public class FriendAdapter extends RecyclerView.Adapter<FriendHolder> {
-
+public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestHolder> {
     private User[] users;
     private Activity activity;
     private JSONArray usersJsonArray;
 
-    public FriendAdapter(User[] users, Activity activity) {
+    public FriendRequestsAdapter(User[] users, Activity activity) {
         this.users = users;
         this.activity = activity;
     }
 
     @Override
-    public FriendHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FriendRequestHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(activity);
 
-        return new FriendHolder(layoutInflater, parent, activity);
+        return new FriendRequestHolder(layoutInflater, parent, activity);
 
     }
 
@@ -37,7 +34,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendHolder> {
     }
 
     @Override
-    public void onBindViewHolder(FriendHolder holder, int position) {
+    public void onBindViewHolder(FriendRequestHolder holder, int position) {
         User user = users[position];
         holder.bind(user);
     }

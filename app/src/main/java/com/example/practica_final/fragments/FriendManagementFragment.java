@@ -83,9 +83,10 @@ public class FriendManagementFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // create new activity for register view
-              //  Intent intent = new Intent(activity, FriendsActivity.class);
-               // intent.putExtra("fragment", ID_FRIEND_REQUESTS_ACTIVITY);
-               // startActivityForResult(intent,ID_FRIEND_REQUESTS_ACTIVITY);
+                System.out.println("FRIENDS REQUESTS APRETAT");
+                Intent intent = new Intent(activity, FriendsActivity.class);
+                intent.putExtra("fragment", ID_FRIEND_REQUESTS_ACTIVITY);
+                startActivityForResult(intent,ID_FRIEND_REQUESTS_ACTIVITY);
             }
         }));
     }
