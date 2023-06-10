@@ -16,6 +16,7 @@ import com.example.practica_final.ProfileFragment;
 import com.example.practica_final.R;
 import com.example.practica_final.fragments.FeedFragment;
 import com.example.practica_final.fragments.FriendManagementFragment;
+import com.example.practica_final.fragments.HomeFragment;
 
 public class SingleFragmentActivity extends AppCompatActivity {
 
@@ -49,7 +50,7 @@ public class SingleFragmentActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentById(R.id.feedLayout);
 
         if (fragment == null) {
-            fragment = new FeedFragment();
+            fragment = new HomeFragment(this);
             fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
         }
 

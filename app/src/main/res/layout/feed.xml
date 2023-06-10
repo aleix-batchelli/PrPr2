@@ -7,7 +7,20 @@
     android:background="@color/verde">
 
 
+    <TextView
+        android:id="@+id/feed_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dark_green"
+        android:textColor="@color/white"
+        android:paddingTop="8dp"
+        android:paddingStart="20dp"
+        android:textSize="25dp"
+        android:text="@string/home"
+        tools:ignore="MissingConstraints" />
+
     <FrameLayout
+        android:id="@+id/bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="0dp"
@@ -20,14 +33,16 @@
     </FrameLayout>
 
 
-
     <FrameLayout
         android:id="@+id/feedLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_menu"
+        app:layout_constraintBaseline_toTopOf="@id/feed_header"
 
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,8 @@
             android:name=".activities.FriendsActivity"
             android:exported="true">
         </activity>
+        <activity android:name=".categories.Activities.CategoriesActivity" android:exported="true" />
+
         <activity
             android:name=".activities.ProfileActivity"
             android:exported="true">

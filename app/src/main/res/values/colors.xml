@@ -10,6 +10,9 @@
     <color name="verde">#44803F</color>
     <color name="red">#A52A2A</color>
     <color name="orange">#FFA500</color>
+    <color name="orange1">#F7C84E</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="dark_green">#34572A</color>
+    <color name="orange_red">#F88449</color>
 
 </resources>

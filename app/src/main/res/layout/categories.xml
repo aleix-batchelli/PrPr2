@@ -11,30 +11,19 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="      Categories"
-        android:textSize="25dp"
+        android:text="@string/categories"
+        android:textSize="25sp"
+        android:paddingStart="30dp"
+        android:textColor="@color/white"
         android:gravity="center_vertical"
-        android:background="@color/white"
+        android:background="@color/dark_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/my_button"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/add_button"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
 
-    </Button>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <FrameLayout
+        android:id="@+id/categoriesLayout"
         android:layout_width="match_parent"
         android:layout_height="580dp"
         android:layout_marginTop="51dp"
@@ -42,9 +31,8 @@
         app:layout_constraintBottom_toTopOf="@+id/cat_menu_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+    </FrameLayout>
 
-
-    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/cat_menu_container"
@@ -55,6 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <include layout="@layout/bottom_menu_fragment" />
     </FrameLayout>
 
 
