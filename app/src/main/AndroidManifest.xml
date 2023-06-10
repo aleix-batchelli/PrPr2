@@ -47,6 +47,7 @@
             android:name=".activities.ProfileActivity"
             android:exported="true">
         </activity>
+
     </application>
 
 </manifest>

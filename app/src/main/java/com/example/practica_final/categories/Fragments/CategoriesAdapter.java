@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practica_final.R;
-import com.example.practica_final.categories.entities.Category;
+import com.example.practica_final.categories.manager.entities.Category;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

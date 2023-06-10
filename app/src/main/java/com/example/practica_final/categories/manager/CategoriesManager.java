@@ -10,7 +10,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practica_final.categories.Activities.CategoriesActivity;
 import com.example.practica_final.categories.Fragments.CategoryListFragment;
-import com.example.practica_final.categories.entities.Category;
+import com.example.practica_final.categories.manager.entities.Category;
 
 import org.json.JSONArray;
 import org.json.JSONException;

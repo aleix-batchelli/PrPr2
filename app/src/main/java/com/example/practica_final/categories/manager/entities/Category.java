@@ -1,4 +1,4 @@
-package com.example.practica_final.categories.entities;
+package com.example.practica_final.categories.manager.entities;
 
 import org.json.JSONException;
 import org.json.JSONObject;

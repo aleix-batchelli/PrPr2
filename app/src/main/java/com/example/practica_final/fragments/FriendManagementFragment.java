@@ -58,8 +58,8 @@ public class FriendManagementFragment extends Fragment {
                 // create new activity for register view
                 System.out.println("DELETE APRETAT");
                 Intent intent = new Intent(activity, FriendsActivity.class);
-                intent.putExtra("fragment", ID_FRIEND_LIST_ACTIVITY);
-                startActivityForResult(intent,ID_FRIEND_LIST_ACTIVITY);
+                intent.putExtra("fragment", ID_DELETE_FRIENDS_ACTIVITY);
+                startActivityForResult(intent,ID_DELETE_FRIENDS_ACTIVITY);
             }
         }));
     }
@@ -96,9 +96,9 @@ public class FriendManagementFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // create new activity for register view
-               // Intent intent = new Intent(activity, FriendsActivity.class);
-               // intent.putExtra("fragment", ID_DELETE_FRIENDS_ACTIVITY);
-               // startActivityForResult(intent,ID_DELETE_FRIENDS_ACTIVITY);
+               Intent intent = new Intent(activity, FriendsActivity.class);
+               intent.putExtra("fragment", ID_FRIEND_LIST_ACTIVITY);
+               startActivityForResult(intent,ID_FRIEND_LIST_ACTIVITY);
             }
         }));
     }

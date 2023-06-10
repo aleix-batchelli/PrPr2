@@ -1,6 +1,5 @@
 package com.example.practica_final.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,12 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.practica_final.FriendListFragment;
 import com.example.practica_final.ProfileFragment;
 import com.example.practica_final.R;
+import com.example.practica_final.fragments.DeleteFriendsFragment;
 import com.example.practica_final.fragments.FeedFragment;
 import com.example.practica_final.fragments.FriendManagementFragment;
 import com.example.practica_final.fragments.FriendRequestFragment;
+import com.example.practica_final.fragments.ListFriendsFragment;
 import com.example.practica_final.fragments.SearchFriendFragment;
 
 public class FriendsActivity extends AppCompatActivity {
@@ -73,8 +73,7 @@ public class FriendsActivity extends AppCompatActivity {
         System.out.println("seletedFragment: " + selectedFragment);
         switch (selectedFragment) {
             case ID_FRIEND_LIST_ACTIVITY: {
-               // new ListFriendsFragment(this);
-                break;
+               return new ListFriendsFragment(this);
             }
             case ID_FRIEND_REQUESTS_ACTIVITY: {
                 return new FriendRequestFragment(this);
@@ -84,8 +83,7 @@ public class FriendsActivity extends AppCompatActivity {
                 return new SearchFriendFragment(this);
             }
             case ID_DELETE_FRIENDS_ACTIVITY: {
-               // new DeleteFriendsFragment(this);
-                break;
+               return new DeleteFriendsFragment(this);
             }
         }
         return new FriendManagementFragment(this);
