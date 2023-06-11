@@ -22,6 +22,9 @@ public class ProfileFragment extends Fragment {
     private TextView emailTV;
     private ImageView profileIV;
     private Button chatButton;
+    private Button logoutButton;
+    private Button settingsButton;
+
 
     public ProfileFragment() {
 
@@ -51,6 +54,13 @@ public class ProfileFragment extends Fragment {
 
         return v;
     }
+
+    //Dos botones uno de logout y otro de cambiar informacion del usuario
+    //El de cambiar informacion del usuario te lleva a otro fragmento donde puedes cambiar la informacion
+    //El de logout te lleva a la pantalla de login
+
+
+
 
 }
 

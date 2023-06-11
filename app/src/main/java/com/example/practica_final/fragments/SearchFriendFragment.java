@@ -77,6 +77,12 @@ public class SearchFriendFragment extends Fragment {
         listUsersRV.setAdapter(friendAdapter);
 
         updateUI();
+        searchUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterUsers(getActivity());
+            }
+        });
 
         return v;
     }
@@ -152,4 +158,48 @@ public class SearchFriendFragment extends Fragment {
         return users;
     }
 
+
+    private void filterUsers (Activity activity) {
+        JSONArray jsonObject = new JSONArray();
+        jsonObject.put(searchUserET.getText().toString());
+        RequestQueue queue = Volley.newRequestQueue(activity);
+        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/users/search";
+        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+                    users = new JSONArray(response.toString());
+                    User[] allUsers = convertJSONArrayToUsers(users);
+
+                    System.out.println(Arrays.toString(allUsers));
+                    friendAdapter.setUsers(allUsers);
+                    friendAdapter.notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("ERROR RESPONSE");
+                error.printStackTrace();
+
+
+                foundUsers = new User[0];
+                Toast.makeText(activity, R.string.incorrectCredentials, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            public Map<String, String> getHeaders() {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/json");
+                params.put("s", searchUserET.getText().toString());
+                params.put("Authorization", "Bearer " + Authentication.getAuthentication());
+                return params;
+            }
+        };
+        queue.add(stringRequest);
+    }
 }
