@@ -11,10 +11,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 import com.example.practica_final.R;
-import com.example.practica_final.activities.DeleteFriendsActivity;
-import com.example.practica_final.activities.FriendRequestsActivity;
 import com.example.practica_final.activities.FriendsActivity;
-import com.example.practica_final.activities.SearchFriendsActivity;
 
 public class FriendManagementFragment extends Fragment {
     private Button listFriendsButton;
@@ -59,6 +56,7 @@ public class FriendManagementFragment extends Fragment {
                 System.out.println("DELETE APRETAT");
                 Intent intent = new Intent(activity, FriendsActivity.class);
                 intent.putExtra("fragment", ID_DELETE_FRIENDS_ACTIVITY);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivityForResult(intent,ID_DELETE_FRIENDS_ACTIVITY);
             }
         }));
@@ -72,6 +70,7 @@ public class FriendManagementFragment extends Fragment {
                 System.out.println("SEARCH FRIENDS APRETAT");
                 Intent intent = new Intent(activity, FriendsActivity.class);
                 intent.putExtra("fragment", ID_SEARCH_FRIENDS_ACTIVITY);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         }));
@@ -86,6 +85,7 @@ public class FriendManagementFragment extends Fragment {
                 System.out.println("FRIENDS REQUESTS APRETAT");
                 Intent intent = new Intent(activity, FriendsActivity.class);
                 intent.putExtra("fragment", ID_FRIEND_REQUESTS_ACTIVITY);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivityForResult(intent,ID_FRIEND_REQUESTS_ACTIVITY);
             }
         }));
@@ -98,7 +98,9 @@ public class FriendManagementFragment extends Fragment {
                 // create new activity for register view
                Intent intent = new Intent(activity, FriendsActivity.class);
                intent.putExtra("fragment", ID_FRIEND_LIST_ACTIVITY);
+               intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                startActivityForResult(intent,ID_FRIEND_LIST_ACTIVITY);
+
             }
         }));
     }

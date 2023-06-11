@@ -25,7 +25,6 @@ public class FriendsActivity extends AppCompatActivity {
     protected ImageButton homeButton;
     protected ImageButton messagesButton;
     protected ImageButton friendsButton;
-
     private Button listFriendsButton;
     private Button friendRequestsButton;
     private Button searchFriendsButton;

@@ -68,8 +68,7 @@ public class FriendRequestFragment extends Fragment {
         listUsersRV = (RecyclerView) v.findViewById(R.id.searchRequestsRV);
         listUsersRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        User[] aux = new User[1];
-        aux[0] = new User(1, "", "", "", "");
+        User[] aux = new User[0];
 
         friendAdapter = new FriendRequestsAdapter(aux, activity); // Inicializar el adaptador con una lista vacía
         listUsersRV.setAdapter(friendAdapter); // Establecer el adaptador en el RecyclerView

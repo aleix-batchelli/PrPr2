@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingTop="20dp"
         android:paddingBottom="25dp"
+
         android:background="@color/white"
         />
 
@@ -33,6 +34,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/friendName"
@@ -51,7 +53,7 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/menu"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/sendButton"
         app:rippleColor="@color/black" />
 
@@ -63,16 +65,12 @@
         android:text="@string/send"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/menu"
+        app:layout_constraintTop_toTopOf="@id/messageEditText"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         app:rippleColor="@color/black" />
 
-    <include
-        layout="@layout/bottom_menu_fragment"
-        android:id="@+id/menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="10dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

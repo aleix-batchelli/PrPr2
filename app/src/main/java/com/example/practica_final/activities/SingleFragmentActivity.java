@@ -14,9 +14,9 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.practica_final.ProfileFragment;
 import com.example.practica_final.R;
-import com.example.practica_final.fragments.FeedFragment;
 import com.example.practica_final.fragments.FriendManagementFragment;
 import com.example.practica_final.fragments.HomeFragment;
+import com.example.practica_final.fragments.MessagesListFragment;
 
 public class SingleFragmentActivity extends AppCompatActivity {
 
@@ -72,7 +72,8 @@ public class SingleFragmentActivity extends AppCompatActivity {
 
                 animateButtons(MESSAGE);
                 // create new activity for register view
-
+                Fragment fragment = new MessagesListFragment(SingleFragmentActivity.this);
+                fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
 
             }
         }));
@@ -85,7 +86,7 @@ public class SingleFragmentActivity extends AppCompatActivity {
 
                 animateButtons(HOME);
                 // create new activity for register view
-                Fragment fragment = new FeedFragment();
+                Fragment fragment = new HomeFragment(SingleFragmentActivity.this);
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
 
             }
@@ -98,8 +99,11 @@ public class SingleFragmentActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 animateButtons(GIFT);
-                //Fragment fragment = new FeedFragment();
+                // NO FER CAS A LO QUE ESTA COMENTAT
+                //Fragment fragment = new MessagesListFragment(SingleFragmentActivity.this);
                 //fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
+                //Intent intent = new Intent(SingleFragmentActivity.this, MessagesActivity.class);
+                //startActivity(intent);
             }
         }));
     }
@@ -229,7 +233,7 @@ public class SingleFragmentActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Fragment fragment = new FeedFragment();
+        Fragment fragment = new HomeFragment(SingleFragmentActivity.this);
         fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
     }
 }

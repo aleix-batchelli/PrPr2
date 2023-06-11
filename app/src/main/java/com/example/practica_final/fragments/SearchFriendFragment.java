@@ -66,18 +66,15 @@ public class SearchFriendFragment extends Fragment {
         // Inflate the layout for this fragment
         this.v = inflater.inflate(R.layout.list_users, container, false);
 
-        System.out.println("ACCESS: " + Authentication.getAuthentication());
-
         searchUserET = v.findViewById(R.id.searchUser);
         searchUserButton = v.findViewById(R.id.searchUserButton);
         listUsersRV = (RecyclerView) v.findViewById(R.id.searchUserRV);
         listUsersRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        User[] aux = new User[1];
-        aux[0] = new User(1, "", "", "", "");
+        User[] aux = new User[0];
 
-        friendAdapter = new FriendAdapter(aux, activity); // Inicializar el adaptador con una lista vacía
-        listUsersRV.setAdapter(friendAdapter); // Establecer el adaptador en el RecyclerView
+        friendAdapter = new FriendAdapter(aux, activity);
+        listUsersRV.setAdapter(friendAdapter);
 
         updateUI();
 

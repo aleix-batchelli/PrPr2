@@ -72,13 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkCredentials(String email, String password) {
         makePost();
-       //Intent intent = new Intent(LoginActivity.this, SingleFragmentActivity.class);
 
-        //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        //startActivity(intent);
-        //int userID = UserInfoProvider.getUserID(accessToken);
-
-        return;
     }
 
     private void makePost() {

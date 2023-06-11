@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practica_final.Authentication;
 import com.example.practica_final.FriendAdapter;
+import com.example.practica_final.FriendChatAdapter;
 import com.example.practica_final.R;
 import com.example.practica_final.users.User;
 
@@ -32,33 +33,35 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ListFriendsFragment extends Fragment {
+public class MessagesListFragment extends Fragment {
+
     private EditText searchUserET;
     private Button searchUserButton;
     private RecyclerView listUsersRV;
     private View v;
     private Activity activity;
 
-    private FriendAdapter friendAdapter;
+    private FriendChatAdapter friendAdapter;
     private User[] foundUsers;
 
     private JSONArray users;
 
-    public ListFriendsFragment(Activity activity) {
+    public MessagesListFragment(Activity activity) {
         this.activity = activity;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.v = inflater.inflate(R.layout.list_users, container, false);
-
-        System.out.println("ACCESS: " + Authentication.getAuthentication());
 
         searchUserET = v.findViewById(R.id.searchUser);
         searchUserButton = v.findViewById(R.id.searchUserButton);
@@ -67,7 +70,7 @@ public class ListFriendsFragment extends Fragment {
 
         User[] aux = new User[0];
 
-        friendAdapter = new FriendAdapter(aux, activity); // Inicializar el adaptador con una lista vacía
+        friendAdapter = new FriendChatAdapter(aux, activity); // Inicializar el adaptador con una lista vacía
         listUsersRV.setAdapter(friendAdapter); // Establecer el adaptador en el RecyclerView
 
         updateUI();
@@ -78,15 +81,15 @@ public class ListFriendsFragment extends Fragment {
     private void updateUI() {
         System.out.println("update Ui");
 
-        getAllUsers(getActivity());
+        getFriendsMessaging(getActivity());
 
     }
 
-    private void getAllUsers(Activity activity) {
+    private void getFriendsMessaging(Activity activity) {
         JSONArray jsonObject = new JSONArray();
 
         RequestQueue queue = Volley.newRequestQueue(activity);
-        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/friends";
+        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/messages/users";
         JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONArray>() {
 
             @Override
