@@ -60,7 +60,7 @@
             android:id="@+id/Actualizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Actualizar"
+            android:text="@string/Actilizar"
             android:background="@drawable/shape"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/Password"

@@ -30,15 +30,8 @@
         android:textSize="20dp"
         tools:ignore="MissingConstraints" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/setNameButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="Set"
@@ -47,6 +40,7 @@
         tools:layout_editor_absoluteY="102dp" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/catName"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:hint="Category Name"
@@ -55,6 +49,7 @@
         tools:layout_editor_absoluteY="102dp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryProductsList"
         android:layout_width="350dp"
         android:layout_height="450dp"
         android:layout_marginEnd="30dp"

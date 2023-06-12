@@ -7,31 +7,29 @@
     android:background="@color/verde">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesList"
+        android:layout_width="match_parent"
+        android:layout_height="580dp"
+        android:layout_marginTop="437dp"
+        app:layout_constraintBottom_toTopOf="@id/cat_menu_container"
+        app:layout_constraintTop_toBottomOf="@id/textView3"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/categories"
-        android:textSize="25sp"
-        android:paddingStart="30dp"
-        android:textColor="@color/white"
-        android:gravity="center_vertical"
         android:background="@color/dark_green"
+        android:gravity="center_vertical"
+        android:paddingStart="30dp"
+        android:text="@string/categories"
+        android:textColor="@color/white"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
-
-    <FrameLayout
-        android:id="@+id/categoriesLayout"
-        android:layout_width="match_parent"
-        android:layout_height="580dp"
-        android:layout_marginTop="51dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/cat_menu_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
 
 
     <FrameLayout

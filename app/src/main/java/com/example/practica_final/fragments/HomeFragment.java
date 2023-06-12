@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.practica_final.R;
@@ -16,9 +17,9 @@ import com.example.practica_final.categories.Activities.CategoriesActivity;
 public class HomeFragment extends Fragment {
 
     Button[] buttons;
-    Activity activity;
+    AppCompatActivity activity;
 
-    public HomeFragment(Activity activity) {
+    public HomeFragment(AppCompatActivity activity) {
         this.activity = activity;
     }
 
@@ -83,7 +84,8 @@ public class HomeFragment extends Fragment {
                 activity.startActivity(intent);
             }
         });
-
     }
+
+
 
 }

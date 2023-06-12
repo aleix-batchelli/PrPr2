@@ -1,29 +1,44 @@
 package com.example.practica_final.categories.Activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.practica_final.R;
+import com.example.practica_final.categories.Fragments.CategoriesAdapter;
 import com.example.practica_final.categories.Fragments.CategoryListFragment;
+import com.example.practica_final.categories.entities.Category;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 
 public class CategoriesActivity extends AppCompatActivity {
-    FrameLayout fragment;
-    FragmentManager fragmentManager;
 
-    CategoryListFragment categoriesFragment;
+    private RecyclerView recyclerView;
+
+    private CategoriesAdapter adapter;
 
     public CategoriesActivity() {
-        //this.categoriesFragment = new CategoryListFragment(this);
     }
 
     public void setComponents () {
-        fragment = findViewById(R.id.categoriesLayout);
-        fragmentManager = getSupportFragmentManager();
+        recyclerView = findViewById(R.id.categoriesList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -31,11 +46,51 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categories);
         setComponents();
-
-        fragmentManager = getSupportFragmentManager();
-        Fragment fragment = new CategoryListFragment(this);
-        fragmentManager.beginTransaction().add(R.id.categoriesLayout, fragment).commit();
+        getCategories();
     }
+
+    public void getCategories () {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="https://balandrau.salle.url.edu/i3/mercadoexpress/api/v1/categories";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        ArrayList<Category> categories = new ArrayList<>();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                categories.add(new Category(response.getJSONObject(i)));
+                            }
+                        } catch (JSONException ignored) {
+
+                        }
+                        updateUI(categories);
+                        Log.e("resposta", "La resposta es: "+ response.toString());
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("resposta", "Hi ha hagut un error:" + error);
+                    }
+                });
+
+        queue.add(jsonArrayRequest);
+    }
+
+    private void updateUI (ArrayList<Category> categories) {
+        if (adapter == null) {
+            adapter = new CategoriesAdapter(categories);
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter.setCategories(categories);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
 
 
 

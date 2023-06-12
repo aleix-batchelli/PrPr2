@@ -1,4 +1,4 @@
-package com.example.practica_final.categories.manager.entities;
+package com.example.practica_final.categories.entities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,5 +48,18 @@ public class Category {
 
     public Integer getParentID() {
         return parentID;
+    }
+
+    public JSONObject castToJSONObject () {
+        JSONObject ret = new JSONObject();
+        try {
+            ret.put("name", getName());
+            ret.put("description", getDescription());
+            ret.put("photo", getPhoto());
+            ret.put("categoryParentId", getParentID());
+            return ret;
+        } catch (JSONException ignored) {
+            return null;
+        }
     }
 }
