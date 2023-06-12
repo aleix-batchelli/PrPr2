@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/verde">
 
-
-    <TextView
-        android:id="@+id/feed_header"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/dark_green"
-        android:textColor="@color/white"
-        android:paddingTop="8dp"
-        android:paddingStart="20dp"
-        android:textSize="25dp"
-        android:text="@string/home"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/bottom_menu"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <include
-            layout="@layout/bottom_menu_fragment"
+        <TextView
+            android:id="@+id/feed_header"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+            android:layout_height="50dp"
+            android:background="@color/dark_green"
+            android:textColor="@color/white"
+            android:paddingTop="8dp"
+            android:paddingStart="20dp"
+            android:textSize="25dp"
+            android:text="@string/home"
+            tools:ignore="MissingConstraints" />
+
+        <FrameLayout
+            android:id="@+id/bottom_menu"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include
+                layout="@layout/bottom_menu_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
 
 
-    <FrameLayout
-        android:id="@+id/feedLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="100dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="@id/bottom_menu"
-        app:layout_constraintBaseline_toTopOf="@id/feed_header"
+        <FrameLayout
+            android:id="@+id/feedLayout"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_menu"
+            app:layout_constraintTop_toBottomOf="@id/feed_header" />
 
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

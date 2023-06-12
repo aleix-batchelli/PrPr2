@@ -20,10 +20,10 @@ public class ProfileFragment extends Fragment {
     private TextView nameTV;
     private TextView lastNameTV;
     private TextView emailTV;
+    private TextView PasswordTV;
     private ImageView profileIV;
-    private Button chatButton;
     private Button logoutButton;
-    private Button settingsButton;
+    private Button ActualizarButton;
 
 
     public ProfileFragment() {
@@ -39,13 +39,16 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.user_profile, container, false);
+        View v =  inflater.inflate(R.layout.profile, container, false);
 
-        nameTV = v.findViewById(R.id.nameTV);
-        lastNameTV = v.findViewById(R.id.lastNameTv);
-        emailTV = v.findViewById(R.id.emailTV);
-        profileIV = v.findViewById(R.id.profileImage);
-        chatButton = v.findViewById(R.id.chatButton);
+        nameTV = v.findViewById(R.id.Nombre);
+        lastNameTV = v.findViewById(R.id.Apellido);
+        emailTV = v.findViewById(R.id.Email);
+        PasswordTV = v.findViewById(R.id.Password);
+        logoutButton = v.findViewById(R.id.Logout);
+        ActualizarButton = v.findViewById(R.id.Actualizar);
+
+
 
         //nameTV.setText(user.getName());
         //lastNameTV.setText(user.getLastName());
