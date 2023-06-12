@@ -7,7 +7,7 @@
     android:background="@color/orange_red">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/categoryButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparent"

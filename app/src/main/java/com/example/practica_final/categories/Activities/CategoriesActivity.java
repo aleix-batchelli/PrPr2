@@ -2,12 +2,9 @@ package com.example.practica_final.categories.Activities;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +16,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practica_final.R;
 import com.example.practica_final.categories.Fragments.CategoriesAdapter;
-import com.example.practica_final.categories.Fragments.CategoryListFragment;
 import com.example.practica_final.categories.entities.Category;
 
 import org.json.JSONArray;
@@ -82,7 +78,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
     private void updateUI (ArrayList<Category> categories) {
         if (adapter == null) {
-            adapter = new CategoriesAdapter(categories);
+            adapter = new CategoriesAdapter(categories, this);
             recyclerView.setAdapter(adapter);
         } else {
             adapter.setCategories(categories);
