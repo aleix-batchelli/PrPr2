@@ -51,6 +51,8 @@
         <activity android:name=".categories.Activities.SingleCategoryActivity"
             android:exported="true"
             />
+        <activity android:name=".products.Activities.SingleProductActivity"
+            android:exported="true" />
 
     </application>
 

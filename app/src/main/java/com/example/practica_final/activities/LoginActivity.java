@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                     // save access token and user ID
                     Authentication.setAuthentication(accessToken);
                     Authentication.setUserID(userID);
-                    startActivityForResult(intent,ID_FEED_ACTIVITY);
+                    startActivityForResult(intent, ID_FEED_ACTIVITY);
 
                     System.out.println("Login Completed");
                 } catch (JSONException e) {
