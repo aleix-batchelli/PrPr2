@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.practica_final.R;
 import com.example.practica_final.categories.Fragments.CategoriesAdapter;
 import com.example.practica_final.categories.entities.Category;
+import com.example.practica_final.fragments.BottomMenuFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,12 +32,22 @@ public class CategoriesActivity extends AppCompatActivity {
 
     private CategoriesAdapter adapter;
 
+    private FragmentManager fragmentManager;
+
     public CategoriesActivity() {
     }
 
     public void setComponents () {
         recyclerView = findViewById(R.id.categoriesList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.bottom_menu);
+        if (fragment == null) {
+            fragment = new BottomMenuFragment(this, getIntent().getIntExtra("menu_state", 2));
+            fragmentManager.beginTransaction().add(R.id.bottom_menu, fragment).commit();
+        }
+
     }
 
     @Override

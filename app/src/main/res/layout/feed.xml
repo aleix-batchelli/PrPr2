@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:nestedScrollingEnabled="false"
     android:background="@color/verde">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,33 +17,26 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/dark_green"
-            android:textColor="@color/white"
-            android:paddingTop="8dp"
             android:paddingStart="20dp"
-            android:textSize="25dp"
+            android:paddingTop="8dp"
             android:text="@string/home"
+            android:textColor="@color/white"
+            android:textSize="25dp"
             tools:ignore="MissingConstraints" />
+
 
         <FrameLayout
             android:id="@+id/bottom_menu"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginBottom="0dp"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <include
-                layout="@layout/bottom_menu_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
-
+            app:layout_constraintTop_toBottomOf="@id/feedLayout" />
 
         <FrameLayout
             android:id="@+id/feedLayout"
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="535dp"
             android:layout_marginBottom="100dp"
-            app:layout_constraintBottom_toBottomOf="@id/bottom_menu"
+            app:layout_constraintBottom_toTopOf="@id/bottom_menu"
             app:layout_constraintTop_toBottomOf="@id/feed_header" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

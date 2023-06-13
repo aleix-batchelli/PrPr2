@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.practica_final.R;
 import com.example.practica_final.categories.Fragments.CategoriesAdapter;
 import com.example.practica_final.categories.entities.Category;
+import com.example.practica_final.fragments.BottomMenuFragment;
 import com.example.practica_final.products.Adapter.ProductAdapter;
 import com.example.practica_final.products.Product;
 import com.google.android.material.textfield.TextInputEditText;
@@ -46,6 +49,8 @@ public class SingleCategoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Category category;
     private ProductAdapter adapter;
+
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -144,6 +149,13 @@ public class SingleCategoryActivity extends AppCompatActivity {
         button = findViewById(R.id.setNameButton);
         recyclerView = findViewById(R.id.categoryProductsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        fragmentManager = getSupportFragmentManager();
+
+        Fragment fragment = fragmentManager.findFragmentById(R.id.bottom_menu);
+        if (fragment == null) {
+            fragment = new BottomMenuFragment(this, getIntent().getIntExtra("menu_state", 2));
+            fragmentManager.beginTransaction().add(R.id.bottom_menu, fragment).commit();
+        }
     }
 
     private void setListeners() {
@@ -161,7 +173,6 @@ public class SingleCategoryActivity extends AppCompatActivity {
         this.category = category;
         header.setText(category.getName());
         catName.setText(category.getName());
-        //todo recyclerView
     }
 
     public void getProducts(int id) {
