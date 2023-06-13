@@ -55,7 +55,7 @@
     <string name="emailDato">Email</string>
     <string name="PasswordDato">Password</string>
     <string name="MisDatos">Datos</string>
-    <string name="Actilizar">Actualizar</string>
+    <string name="Actualizar">Actualizar</string>
     <string name="LogOut">LogOut</string>
     <string name="message">message…</string>
 </resources>

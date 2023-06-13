@@ -163,7 +163,7 @@ public class SearchFriendFragment extends Fragment {
         JSONArray jsonObject = new JSONArray();
         jsonObject.put(searchUserET.getText().toString());
         RequestQueue queue = Volley.newRequestQueue(activity);
-        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/users/search";
+        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/users/search?s=" + searchUserET.getText().toString();
         JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONArray>() {
 
             @Override
