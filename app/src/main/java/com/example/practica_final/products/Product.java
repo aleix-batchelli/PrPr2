@@ -1,5 +1,11 @@
 package com.example.practica_final.products;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class Product {
 
     private int id;
@@ -19,6 +25,26 @@ public class Product {
         this.price = price;
         this.categoryIds = categoryIds;
     }
+
+    public Product(JSONObject object) {
+        try {
+            this.id = object.getInt("id");
+            this.name = object.getString("name");
+            this.description = object.getString("description");
+            this.link = object.getString("link");
+            this.photo = object.getString("photo");
+            this.price = object.getDouble("price");
+
+            JSONArray categoryIdsArray = object.getJSONArray("categoryIds");
+            this.categoryIds = new int[categoryIdsArray.length()];
+            for (int i = 0; i < categoryIdsArray.length(); i++) {
+                this.categoryIds[i] = categoryIdsArray.getInt(i);
+            }
+        } catch (JSONException ignored) {
+            // Handle the exception if needed
+        }
+    }
+
 
     public String getName() {
         return name;
