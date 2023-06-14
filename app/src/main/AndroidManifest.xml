@@ -54,6 +54,8 @@
             />
         <activity android:name=".products.Activities.SingleProductActivity"
             android:exported="true" />
+        <activity android:name=".wishList.Activities.WishListsActivity"
+            android:exported="true"/>
 
     </application>
 

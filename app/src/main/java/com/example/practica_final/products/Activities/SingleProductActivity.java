@@ -43,7 +43,6 @@ public class SingleProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_product_layout);
         setComponents();
-        int a = getIntent().getIntExtra("index", 0);
         getProduct(getIntent().getIntExtra("index", 0));
     }
 
