@@ -36,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordET;
     private final int ID_REGISTER_ACTIVITY = 2;
     private final int ID_FEED_ACTIVITY = 3;
-    private boolean correctCredentials;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         }));
 
     }
-
 
     private void checkCredentials(String email, String password) {
         makePost();

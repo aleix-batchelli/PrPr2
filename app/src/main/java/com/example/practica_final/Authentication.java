@@ -1,6 +1,8 @@
 package com.example.practica_final;
 
 public class Authentication {
+
+    public static final String AUTHORIZATION = "Authorization";
     private static String authentication = "";
     private static int userID = 0;
 

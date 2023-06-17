@@ -59,4 +59,6 @@
     <string name="LogOut">LogOut</string>
     <string name="message">message…</string>
     <string name="wishLists">Wish Lists</string>
+    <string name="create">create</string>
+    <string name="Done">Done</string>
 </resources>

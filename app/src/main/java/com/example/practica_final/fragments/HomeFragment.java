@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.practica_final.R;
 import com.example.practica_final.categories.Activities.CategoriesActivity;
+import com.example.practica_final.wishList.Activities.CreateWishListActivity;
 import com.example.practica_final.wishList.Activities.WishListsActivity;
 
 public class HomeFragment extends Fragment {
@@ -60,7 +61,8 @@ public class HomeFragment extends Fragment {
         buttons[CREATEWISHLIST].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(activity, CreateWishListActivity.class);
+                activity.startActivity(intent);
             }
         });
 

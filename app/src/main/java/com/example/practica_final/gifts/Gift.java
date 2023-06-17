@@ -19,7 +19,7 @@ public class Gift {
 
     private int id;
     private int wishListId;
-    private Product product;
+    private String productUrl;
     private int priority;
     private boolean booked;
 
@@ -28,7 +28,6 @@ public class Gift {
         this.wishListId = wishListId;
         this.priority = priority;
         this.booked = booked;
-        getProduct(productUrl);
     }
 
     public Gift(JSONObject object) {
@@ -36,31 +35,9 @@ public class Gift {
             this.id = object.getInt("id");
             this.wishListId = object.getInt("wishlist_id");
             this.priority = object.getInt("priority");
-            this.booked = object.getBoolean("booked");
-            getProduct(object.getString("product_url"));
+            this.productUrl = object.getString("product_url");
+            this.booked = (object.getInt("booked") == 0? false : true);
         } catch (JSONException ignored) {}
-    }
-
-    public void getProduct (String productUrl) {
-        RequestQueue queue = Volley.newRequestQueue(new AppCompatActivity());
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, productUrl, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        product = new Product(response);
-                        Log.e("resposta", "La resposta es: "+ response.toString());
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("resposta", "Hi ha hagut un error:" + error);
-                    }
-                });
-
-        queue.add(jsonObjectRequest);
     }
 
     public int getId() {
@@ -79,12 +56,12 @@ public class Gift {
         this.wishListId = wishListId;
     }
 
-    public Product getProduct() {
-        return this.product;
+    public String getProductUrl() {
+        return this.productUrl;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductUrl(String url) {
+        this.productUrl = url;
     }
 
     public int getPriority() {
@@ -101,5 +78,10 @@ public class Gift {
 
     public void setBooked(boolean booked) {
         this.booked = booked;
+    }
+
+    public int getProductId () {
+        String[] parts = this.productUrl.split("/");
+        return Integer.parseInt(parts[parts.length - 1]);
     }
 }

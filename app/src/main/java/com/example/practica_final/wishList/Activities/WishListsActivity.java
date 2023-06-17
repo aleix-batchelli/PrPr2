@@ -100,12 +100,23 @@ public class WishListsActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
+    private ArrayList<WishList> filterWishLists (ArrayList<WishList> wishLists) {
+        ArrayList<WishList> ret = new ArrayList<>();
+        for (WishList wishList : wishLists) {
+            if (wishList.getUserId() == Authentication.getUserID()) {
+                ret.add(wishList);
+            }
+        }
+        return ret;
+    }
+
     public void setWishLists (ArrayList<WishList> wishLists) {
+        ArrayList<WishList> filteredList = filterWishLists(wishLists);
         if (adapter == null) {
-            adapter = new WishListAdapter(wishLists, this);
+            adapter = new WishListAdapter(filteredList, this);
             recyclerView.setAdapter(adapter);
         } else {
-            adapter.setWishLists(wishLists);
+            adapter.setWishLists(filteredList);
             adapter.notifyDataSetChanged();
         }
 
