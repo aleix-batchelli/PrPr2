@@ -1,5 +1,6 @@
 package com.example.practica_final.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +13,9 @@ import androidx.fragment.app.FragmentManager;
 import com.example.practica_final.ProfileFragment;
 import com.example.practica_final.R;
 import com.example.practica_final.fragments.DeleteFriendsFragment;
-import com.example.practica_final.fragments.FeedFragment;
 import com.example.practica_final.fragments.FriendManagementFragment;
 import com.example.practica_final.fragments.FriendRequestFragment;
+import com.example.practica_final.fragments.HomeFragment;
 import com.example.practica_final.fragments.ListFriendsFragment;
 import com.example.practica_final.fragments.SearchFriendFragment;
 
@@ -43,13 +44,15 @@ public class FriendsActivity extends AppCompatActivity {
         setContentView(R.layout.feed);
 
         setMenuComponents();
-        setProfileButtonSettings();
-        setFriendsButtonSettings();
-        setGiftButton();
-        setHomeButton();
-        setMessagesButton();
-
         setComponents();
+
+        //setProfileButtonSettings();
+        //setFriendsButtonSettings();
+        //setGiftButton();
+        //setHomeButton();
+        //setMessagesButton();
+
+
         //listFriendsActionListener();
         //searchFriendsActionListener();
         //deleteFriendsActionListener();
@@ -65,6 +68,12 @@ public class FriendsActivity extends AppCompatActivity {
             //fragment = new SearchFriendFragment(this);
             fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
         }
+
+        /*Fragment bottomFragment = fragmentManager.findFragmentById(R.id.bottom_menu);
+        if (bottomFragment == null) {
+            bottomFragment = new BottomMenuFragment(this, getIntent().getIntExtra("menu_state", 2));
+            fragmentManager.beginTransaction().add(R.id.bottom_menu, bottomFragment).commit();
+        }*/
 
     }
 
@@ -110,8 +119,12 @@ public class FriendsActivity extends AppCompatActivity {
         homeButton.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // create new activity for register view
-                Fragment fragment = new FeedFragment();
+                Intent intent = new Intent(FriendsActivity.this, SingleFragmentActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+
+
+                Fragment fragment = new HomeFragment(FriendsActivity.this);
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
 
             }
@@ -159,9 +172,12 @@ public class FriendsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Fragment fragment = new FeedFragment();
-        fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
+        Intent intent = new Intent(FriendsActivity.this, SingleFragmentActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
+
+
     private void deleteFriendsActionListener() {
         deleteFriendsButton.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -211,4 +227,6 @@ public class FriendsActivity extends AppCompatActivity {
         this.searchFriendsButton = findViewById(R.id.searchNewFriend);
         this.deleteFriendsButton = findViewById(R.id.deleteFriends);
     }
+
+
 }

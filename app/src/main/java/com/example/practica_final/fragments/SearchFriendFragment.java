@@ -44,7 +44,7 @@ public class SearchFriendFragment extends Fragment {
     private View v;
     private Activity activity;
 
-    private FriendAdapter friendAdapter;
+    private AddFriendAdapter friendAdapter;
     private User[] foundUsers;
 
     private JSONArray users;
@@ -73,7 +73,7 @@ public class SearchFriendFragment extends Fragment {
 
         User[] aux = new User[0];
 
-        friendAdapter = new FriendAdapter(aux, activity);
+        friendAdapter = new AddFriendAdapter(aux, activity);
         listUsersRV.setAdapter(friendAdapter);
 
         updateUI();
