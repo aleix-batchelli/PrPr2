@@ -11,16 +11,5 @@ import java.util.UUID;
 
 public class ProfileActivity extends SingleFragmentActivity {
 
-    protected Fragment createFragment() {
-        UUID objectID = (UUID) getIntent().getSerializableExtra("UUID_USER");
 
-        Bundle args = new Bundle();
-        args.putSerializable("ARGUMENT_OBJECT_ID", objectID);
-
-        ProfileFragment fragment = new ProfileFragment();
-        fragment.setArguments(args);
-
-        return fragment;
-        //return new Fragment();
-    }
 }

@@ -1,4 +1,4 @@
-package com.example.practica_final.activities;
+/*package com.example.practica_final.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +15,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.practica_final.Authentication;
 import com.example.practica_final.R;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -34,12 +40,12 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
+        setContentView(R.layout.profile);
         setComponents();
         //setProfileButtonSettings(this);
 
         setDeleteButtonListener();
-        //setExitButtonListener();
+        setExitButtonListener();
         
     }
 
@@ -85,12 +91,28 @@ public class SettingsActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    private void cerrarSesion() {
+        Authentication.setAuthentication(null);
+        Authentication.setUserID(-1);
+        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        startActivityForResult(intent,1);
+    }
+
+    private void setExitButtonListener() {
+        exitButton.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cerrarSesion();
+            }
+        }));
+    }
+
     private void setComponents() {
         this.accountButton = findViewById(R.id.account);
         this.authenticatesButton = findViewById(R.id.authenticates);
         this.privacityButton = findViewById(R.id.privacity);
         this.helpButton = findViewById(R.id.help);
         this.deleteButton = findViewById(R.id.delete);
-        this.exitButton = findViewById(R.id.exit);
+        this.exitButton = findViewById(R.id.Logout);
     }
-}
+}*/

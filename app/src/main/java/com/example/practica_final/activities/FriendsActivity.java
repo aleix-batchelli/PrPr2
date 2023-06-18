@@ -164,7 +164,7 @@ public class FriendsActivity extends AppCompatActivity {
                 // create new activity for register view
                 System.out.println("BOTO APRETAT");
 
-                Fragment fragment = new ProfileFragment();
+                Fragment fragment = new ProfileFragment(FriendsActivity.this);
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
             }
         }));

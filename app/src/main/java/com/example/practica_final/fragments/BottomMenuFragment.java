@@ -66,7 +66,7 @@ public class BottomMenuFragment extends Fragment {
             switch (state) {
                 case 0:
                     animateButtons(PROFILE);
-                    fragment = new ProfileFragment();
+                    fragment = new ProfileFragment(activity);
                     fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
                     ((SingleFragmentActivity) activity).setHeader("Profile");
                     break;
@@ -123,7 +123,7 @@ public class BottomMenuFragment extends Fragment {
                     activity.startActivity(intent);
                 }
                 animateButtons(PROFILE);
-                Fragment fragment = new ProfileFragment();
+                Fragment fragment = new ProfileFragment(activity);
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
                 ((SingleFragmentActivity) activity).setHeader("Profile");
             }
