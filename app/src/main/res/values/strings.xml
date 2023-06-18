@@ -61,4 +61,7 @@
     <string name="wishLists">Wish Lists</string>
     <string name="create">create</string>
     <string name="Done">Done</string>
+    <string name="actualitzat">Data actualitzada</string>
+    <string name="noActualitzat">Data no actualitzada</string>
+    <string name="UpdateButton">Update</string>
 </resources>

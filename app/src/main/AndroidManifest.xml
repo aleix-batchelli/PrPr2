@@ -62,6 +62,10 @@
             android:exported="true"/>
         <activity android:name=".wishList.Activities.SingleWishListActivity" android:exported="true" />
         <activity android:name=".wishList.Activities.CreateWishListActivity" android:exported="true" />
+        <activity
+            android:name=".activities.actualitzarInfo"
+            android:exported="true">
+        </activity>
 
     </application>
 

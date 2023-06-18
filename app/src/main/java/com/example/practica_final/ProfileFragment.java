@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.practica_final.activities.MainActivity;
+import com.example.practica_final.activities.actualitzarInfo;
 import com.example.practica_final.users.User;
 
 import org.json.JSONArray;
@@ -66,7 +67,7 @@ public class ProfileFragment extends Fragment {
         logoutButton = v.findViewById(R.id.Logout);
         ActualizarButton = v.findViewById(R.id.Actualizar);
         setExitButtonListener();
-
+        setActualizarButtonListener();
         getUserByID(Authentication.getUserID());
 
 
@@ -143,13 +144,19 @@ public class ProfileFragment extends Fragment {
         }));
     }
 
+    private void setActualizarButtonListener() {
+        ActualizarButton.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, actualitzarInfo.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        }));
+    }
+
     //Dos botones uno de logout y otro de cambiar informacion del usuario
     //El de cambiar informacion del usuario te lleva a otro fragmento donde puedes cambiar la informacion
     //El de logout te lleva a la pantalla de login
-
-
-
-
 }
-
 

@@ -77,7 +77,8 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-
+    private void sendMessage(String toString) {
+    }
 
 
     private void setComponents() {
