@@ -65,7 +65,7 @@ public class MessagesActivity extends AppCompatActivity {
         messageAdapter = new MessageAdapter(new Message[0], MessagesActivity.this);
         messagesRV.setAdapter(messageAdapter);
 
-        getMessages();
+        updateUI();
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +77,45 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    private void sendMessage(String toString) {
+    public void updateUI() {
+        getMessages();
+        messageET.setText("");
+    }
+
+    private void sendMessage(String message) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/messages";
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("content", message);
+            jsonObject.put("user_id_send", Authentication.getUserID());
+            jsonObject.put("user_id_recived", friendID);
+
+        } catch (JSONException e) {
+
+        }
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println(response);
+                updateUI();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        }) {
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/json");
+                params.put("Authorization", "Bearer " + Authentication.getAuthentication());
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 
 
