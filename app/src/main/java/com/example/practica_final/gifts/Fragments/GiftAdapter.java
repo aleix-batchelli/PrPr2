@@ -29,28 +29,23 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftHolder>{
 
     private ArrayList<Gift> gifts;
+    private final CreateWishListActivity activity;
 
-    private ArrayList<Product> products;
-    private CreateWishListActivity activity;
-
-    public GiftAdapter(ArrayList<Gift> gifts, ArrayList<Product> products, CreateWishListActivity activity) {
+    public GiftAdapter(ArrayList<Gift> gifts, CreateWishListActivity activity) {
         this.activity = activity;
         this.gifts = gifts;
-        this.products = products;
     }
 
     public void setGifts(ArrayList<Gift> gifts) {
         this.gifts = gifts;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
 
     @NonNull
     @Override
@@ -63,19 +58,13 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftHolder>{
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull GiftAdapter.GiftHolder holder, int position) {
-        Product product = null;
-        for (int i = 0; i < products.size(); i++) {
-            if (gifts.get(position).getProductId() == products.get(i).getId()) {
-                product = products.get(i);
-            }
-        }
+        Product product = gifts.get(position).getProduct();
         if (product != null) {
             holder.setPosition(position);
             Picasso.get().load(product.getPhoto()).into(holder.image);
             holder.name.setText(product.getName());
             holder.price.setText(product.getPrice() + "€");
         }
-
     }
 
 
@@ -86,15 +75,16 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftHolder>{
 
     public class GiftHolder extends RecyclerView.ViewHolder {
 
-        private Switch aSwitch;
+        @SuppressLint("UseSwitchCompatOrMaterialCode")
+        public Switch aSwitch;
 
-        private TextView name;
+        public TextView name;
 
-        private TextView price;
+        public TextView price;
 
-        private ImageView image;
+        public ImageView image;
 
-        private int position;
+        public int position;
         public GiftHolder(@NonNull View itemView) {
             super(itemView);
             setComponents();
@@ -121,7 +111,7 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftHolder>{
         private void setComponents() {
             aSwitch = itemView.findViewById(R.id.switch1);
             name = itemView.findViewById(R.id.giftName);
-            price = itemView.findViewById(R.id.productPrice);
+            price = itemView.findViewById(R.id.price);
             image = itemView.findViewById(R.id.giftImage);
         }
     }

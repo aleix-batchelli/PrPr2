@@ -20,6 +20,8 @@ public class Gift {
     private int id;
     private int wishListId;
     private String productUrl;
+
+    private Product product;
     private int priority;
     private boolean booked;
 
@@ -80,8 +82,28 @@ public class Gift {
         this.booked = booked;
     }
 
+    public Product getProduct() {
+        return this.product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public int getProductId () {
         String[] parts = this.productUrl.split("/");
         return Integer.parseInt(parts[parts.length - 1]);
+    }
+
+    public JSONObject toJSONObject () {
+        JSONObject object = new JSONObject();
+        try {
+            object.put("id", this.id);
+            object.put("wishlist_id", this.wishListId);
+            object.put("priority", this.priority);
+            object.put("product_url", this.productUrl);
+            object.put("booked", this.booked);
+        } catch (JSONException ignored) {}
+        return object;
     }
 }
