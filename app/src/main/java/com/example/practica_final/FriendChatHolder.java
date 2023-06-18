@@ -45,6 +45,8 @@ public class FriendChatHolder extends RecyclerView.ViewHolder implements View.On
 
         Intent intent = new Intent(activity, MessagesActivity.class);
         intent.putExtra("UUID_USER", user.getID());
+        intent.putExtra("FRIEND_NAME", user.getName());
+
 
 
         activity.startActivity(intent);
