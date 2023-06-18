@@ -96,6 +96,7 @@ public class ListFriendsFragment extends Fragment {
                     users = new JSONArray(response.toString());
                     User[] allUsers = convertJSONArrayToUsers(users);
 
+                    System.out.println("ID AMIC: " + allUsers[1].getID() + " " + Authentication.getUserID());
                     System.out.println(Arrays.toString(allUsers));
                     friendAdapter.setUsers(allUsers);
                     friendAdapter.notifyDataSetChanged();

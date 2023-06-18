@@ -35,6 +35,10 @@
             android:exported="true">
         </activity>
         <activity
+            android:name=".activities.MessagesActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".activities.SingleFragmentActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing">

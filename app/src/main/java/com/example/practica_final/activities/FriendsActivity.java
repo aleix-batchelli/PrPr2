@@ -46,18 +46,6 @@ public class FriendsActivity extends AppCompatActivity {
         setMenuComponents();
         setComponents();
 
-        //setProfileButtonSettings();
-        //setFriendsButtonSettings();
-        //setGiftButton();
-        //setHomeButton();
-        //setMessagesButton();
-
-
-        //listFriendsActionListener();
-        //searchFriendsActionListener();
-        //deleteFriendsActionListener();
-        //friendRequestsActionListener();
-
         int selectedFragment = getIntent().getIntExtra("fragment", ID_SEARCH_FRIENDS_ACTIVITY);
         System.out.println("im on friends activity");
         fragmentManager = getSupportFragmentManager();
@@ -65,15 +53,9 @@ public class FriendsActivity extends AppCompatActivity {
 
         if (fragment == null) {
             fragment = getSelectedFragment(selectedFragment);
-            //fragment = new SearchFriendFragment(this);
             fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
         }
 
-        /*Fragment bottomFragment = fragmentManager.findFragmentById(R.id.bottom_menu);
-        if (bottomFragment == null) {
-            bottomFragment = new BottomMenuFragment(this, getIntent().getIntExtra("menu_state", 2));
-            fragmentManager.beginTransaction().add(R.id.bottom_menu, bottomFragment).commit();
-        }*/
 
     }
 
@@ -164,7 +146,7 @@ public class FriendsActivity extends AppCompatActivity {
                 // create new activity for register view
                 System.out.println("BOTO APRETAT");
 
-                Fragment fragment = new ProfileFragment();
+                Fragment fragment = new ProfileFragment(FriendsActivity.this);
                 fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
             }
         }));
@@ -177,47 +159,6 @@ public class FriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    private void deleteFriendsActionListener() {
-        deleteFriendsButton.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // change fragment
-
-            }
-        }));
-    }
-
-    private void searchFriendsActionListener() {
-        searchFriendsButton.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // change fragment
-                //fragment = new SearchFriendFragment(this);
-              //  fragmentManager.beginTransaction().add(R.id.feedLayout, fragment).commit();
-            }
-        }));
-    }
-
-    private void friendRequestsActionListener() {
-        friendRequestsButton.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // change fragment
-
-            }
-        }));
-    }
-
-    private void listFriendsActionListener() {
-        listFriendsButton.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // change fragment
-
-            }
-        }));
-    }
 
 
 

@@ -99,6 +99,7 @@ public class MessagesListFragment extends Fragment {
                     users = new JSONArray(response.toString());
                     User[] allUsers = convertJSONArrayToUsers(users);
 
+
                     System.out.println(Arrays.toString(allUsers));
                     friendAdapter.setUsers(allUsers);
                     friendAdapter.notifyDataSetChanged();
