@@ -32,6 +32,7 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 public class AddGiftFragment extends Fragment {
@@ -126,7 +127,7 @@ public class AddGiftFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-                setAdapter(products, gifts);
+                setAdapter(arrangeProducts(gifts, products));
             }
         }, new Response.ErrorListener() {
             @Override
@@ -144,9 +145,36 @@ public class AddGiftFragment extends Fragment {
         queue.add(request);
     }
 
-    public void setAdapter (ArrayList<Product> products, ArrayList<Gift> gifts) {
+    public ArrayList<Gift> arrangeProducts(ArrayList<Gift> gifts, ArrayList<Product> products) {
+        ArrayList<Product> arrangedProducts = new ArrayList<>();
+
+        for (int i = 0; i < gifts.size(); i++) {
+            for (int j = 0; j < products.size(); j++) {
+                try {
+                    if (gifts.get(i).getProductId() == products.get(j).getId()) {
+                        gifts.get(i).setProduct(products.get(j));
+                        break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        ArrayList<Gift> ret = new ArrayList<>();
+
+        for (int i = 0; i < gifts.size(); i++) {
+            if (gifts.get(i).getProduct() != null) {
+                ret.add(gifts.get(i));
+            }
+        }
+
+        return ret;
+    }
+
+
+    public void setAdapter (ArrayList<Gift> gifts) {
         if (adapter == null) {
-            adapter = new GiftAdapter(gifts, products, activity);
+            adapter = new GiftAdapter(gifts, activity);
             recyclerView.setAdapter(adapter);
         } else {
             adapter.setGifts(gifts);
