@@ -33,6 +33,35 @@ public class WishList {
         this.endDate = endDate;
     }
 
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", id);
+            jsonObject.put("name", name);
+            jsonObject.put("description", description);
+            jsonObject.put("user_id", userId);
+            jsonObject.put("creation_date", creationDate);
+            jsonObject.put("end_date", endDate);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public JSONObject toJsonEdit() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", id);
+            jsonObject.put("user_id", userId);
+            jsonObject.put("creation_date", creationDate);
+            jsonObject.put("end_date", endDate);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
     public int getId() {
         return id;
     }

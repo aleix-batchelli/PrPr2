@@ -7,15 +7,27 @@
     android:background="@color/verde">
 
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:layout_marginTop="20dp"
+        android:text="@string/delete"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/create"
+        app:layout_constraintTop_toBottomOf="@id/create"
+        tools:ignore="MissingConstraints" />
 
     <FrameLayout
         android:id="@id/bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="631dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button

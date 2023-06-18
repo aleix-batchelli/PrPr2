@@ -67,7 +67,8 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(activity, SingleWishListActivity.class);
-                    intent.putExtra("index", getLayoutPosition());
+                    int a = getLayoutPosition();
+                    intent.putExtra("id", wishLists.get(a).getId());
                     activity.startActivity(intent);
                 }
             });

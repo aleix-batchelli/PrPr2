@@ -64,4 +64,5 @@
     <string name="actualitzat">Data actualitzada</string>
     <string name="noActualitzat">Data no actualitzada</string>
     <string name="UpdateButton">Update</string>
+    <string name="create_product">Create your product</string>
 </resources>

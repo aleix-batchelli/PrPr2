@@ -2,6 +2,8 @@ package com.example.practica_final.products.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +39,10 @@ import java.util.ArrayList;
 public class ProductListFragment extends Fragment {
 
     private AppCompatActivity activity;
+
+    private Button add;
     private RecyclerView recyclerView;
     private TextInputLayout search;
-    private Button searchButton;
     private ProductAdapter adapter;
 
     public ProductListFragment(AppCompatActivity activity) {
@@ -57,6 +60,7 @@ public class ProductListFragment extends Fragment {
         View view = inflater.inflate(R.layout.product_list_fragment, container, false);
         setComponents(view);
         setListeners();
+        getProducts(search.getEditText().getText().toString());
         return view;
     }
 
@@ -65,15 +69,30 @@ public class ProductListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.productList);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         search = view.findViewById(R.id.productSearch);
-        //search.getEditText().setText("Search");
-        searchButton = view.findViewById(R.id.productSearchButton);
+        add = view.findViewById(R.id.productAddButton);
+        search.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                getProducts(search.getEditText().getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
-    public void setListeners () {
-        searchButton.setOnClickListener(new View.OnClickListener() {
+    public void setListeners() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getProducts(search.getEditText().getText().toString());
+                //Todo: Add product
             }
         });
     }

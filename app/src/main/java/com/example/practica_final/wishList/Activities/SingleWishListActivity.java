@@ -3,6 +3,8 @@ package com.example.practica_final.wishList.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -35,6 +37,10 @@ import java.util.Map;
 public class SingleWishListActivity extends AppCompatActivity {
 
     private TextView header;
+
+    private WishList wishList;
+
+    private Button edit;
     private TextView name;
     private TextView description;
     private RecyclerView recyclerView;
@@ -44,21 +50,37 @@ public class SingleWishListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_wishlist_layout);
         setComponents();
+        setListeners();
         updateUI(getIntent().getIntExtra("index", 0));
+    }
+
+    public void setListeners () {
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SingleWishListActivity.this, CreateWishListActivity.class);
+                intent.putExtra("index", getIntent().getIntExtra("index", 0));
+                intent.putExtra("name", wishList.getName());
+                intent.putExtra("description", wishList.getDescription());
+                intent.putExtra("edit", "true");
+                startActivity(intent);
+            }
+        });
     }
 
     public void setComponents () {
         header = findViewById(R.id.header);
         name = findViewById(R.id.name);
         description = findViewById(R.id.description);
+        edit = findViewById(R.id.edit);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        updateUI(getIntent().getIntExtra("index", 0));
+        updateUI(getIntent().getIntExtra("id", 0));
     }
 
-    public void updateUI(int index) {
+    public void updateUI(int id) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/wishlists/" + index;
+        String url = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/wishlists/" + id;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -89,6 +111,7 @@ public class SingleWishListActivity extends AppCompatActivity {
     public void setGifts (JSONObject object) {
         try {
             WishList wishList = new WishList(object);
+            this.wishList = wishList;
             header.setText(object.getString("name"));
             name.setText("Name: " + object.getString("name"));
             description.setText("Description: " +object.getString("description"));

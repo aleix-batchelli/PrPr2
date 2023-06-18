@@ -32,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -64,20 +65,21 @@ public class WishListsActivity extends AppCompatActivity {
 
     }
 
-    public void getWishLists () {
+    public void getFriends (ArrayList<WishList> wishLists) {
+
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://balandrau.salle.url.edu/i3/socialgift/api/v1/wishlists";
+        String url ="https://balandrau.salle.url.edu/i3/socialgift/api/v1/friends";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            ArrayList<WishList> wishLists = new ArrayList<>();
+                            ArrayList<Integer> ids = new ArrayList<>();
                             for (int i = 0; i < response.length(); i++) {
-                                wishLists.add(new WishList(response.getJSONObject(i)));
+                                ids.add(response.getJSONObject(i).optInt("id"));
                             }
-                            setWishLists(wishLists);
+                            setWishLists(wishLists, ids);
                         } catch (JSONException ignored) {}
                     }
                 },
@@ -100,18 +102,61 @@ public class WishListsActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
-    private ArrayList<WishList> filterWishLists (ArrayList<WishList> wishLists) {
+    public void getWishLists () {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="https://balandrau.salle.url.edu/i3/socialgift/api/v1/wishlists";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            ArrayList<WishList> wishLists = new ArrayList<>();
+                            for (int i = 0; i < response.length(); i++) {
+                                wishLists.add(new WishList(response.getJSONObject(i)));
+                            }
+                            getFriends(wishLists);
+                        } catch (JSONException ignored) {}
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        System.out.println();
+                    }
+                }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + Authentication.getAuthentication()); // Replace YOUR_TOKEN_HERE with your actual token
+                return headers;
+            }
+        };
+
+        queue.add(jsonArrayRequest);
+    }
+
+    private ArrayList<WishList> filterWishLists (ArrayList<WishList> wishLists, ArrayList<Integer> ids) {
         ArrayList<WishList> ret = new ArrayList<>();
-        for (WishList wishList : wishLists) {
-            if (wishList.getUserId() == Authentication.getUserID()) {
-                ret.add(wishList);
+        for (int i = 0; i < wishLists.size(); i++) {
+            for (int j = 0; j < ids.size(); j++) {
+                if (wishLists.get(i).getUserId() == ids.get(j)) {
+                    ret.add(wishLists.get(i));
+                    break;
+                }
+            }
+            if (wishLists.get(i).getUserId() == Authentication.getUserID()) {
+                ret.add(wishLists.get(i));
+                break;
             }
         }
         return ret;
     }
 
-    public void setWishLists (ArrayList<WishList> wishLists) {
-        ArrayList<WishList> filteredList = filterWishLists(wishLists);
+    public void setWishLists (ArrayList<WishList> wishLists, ArrayList<Integer> ids) {
+        ArrayList<WishList> filteredList = filterWishLists(wishLists, ids);
         if (adapter == null) {
             adapter = new WishListAdapter(filteredList, this);
             recyclerView.setAdapter(adapter);
